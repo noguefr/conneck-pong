@@ -1,0 +1,37 @@
+/* style du titre de la page */
+h1 {
+	font-family: sans-serif;
+	font-size: x-large;
+	font-weight: bold;
+	color: maroon;
+	margin: 5px;
+}
+
+/* style avec rebond des balles */
+#cadre {
+	border: 2px maroon solid;
+	position: absolute;
+	/*
+	left: 150px;
+	top: 50px;
+	width: 500px;
+	height: 300px;
+*/
+}
+
+/* style du compteur de balles */
+#compteur {
+	color: maroon;
+	font-size: small;
+	font-style: italic;
+	padding: 5px;
+}
+
+/* classe du cadre lorsque les balles bougent */
+.running {background-color: black; }
+
+/* classe du cadre pour balles immobiles sur fond gris */
+.stop { background-color: blue; }
+
+/* Style des balles */
+.balle { position: absolute; }
