@@ -4,20 +4,22 @@
 <head>
 	<title>Balles Neuro Trakker</title> 
 	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+	<!-- Latest compiled and minified CSS -->
+    <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"> -->
 	<link href="balles.css" rel="stylesheet" type="text/css" charset="utf-8" />
 <script type="text/javascript" src="balles.js" charset="utf-8"></script> 
 </head>
 <body onload="init()">
-<h1> Balles JavaScript</h1> 
+<h1> Follow Me</h1> 
 <p>
 	<button type="button" onclick="clicNouvelleBalle()">
 		Nouvelle Balle 
 	</button>
 </p>
 <p>
-	<button type="button" onclick="clicMarcheArret(this)">
-		Arrêt 
-	</button>
+	<button type="button" class="btn btn-danger btn-circle btn-xl" onclick="clicMarcheArret(this)"><i class="fa fa-heart"></i>
+		Arret
+    </button>
 </p>
 <div id="compteur">
 	1 balle 
@@ -27,8 +29,11 @@
 		Effacer 
 	</button>
 </p>
+<div>
+    Vitesse
+</div>
 <p>
-	<input id="vitesse" type="range" value="1" max="4" min="0.4" step="0.2">
+	<input id="vitesse" type="range" value="1" max="4" min="0.2" step="0.1">
 </p>
 <div id="cadre">
 </div>

@@ -7,8 +7,8 @@ var nbCouleurs = 10; // pour les images des balles
 // Position et taille du cadre
 var cadreTop = 50;
 var cadreLeft = 150;
-var cadreWidth = 700;
-var cadreHeight = 500;
+var cadreWidth = 900;
+var cadreHeight = 600;
 // balles qui rebondissent
 var enMarche = true;
 
@@ -30,17 +30,23 @@ function nombreAuHasardNonNul(a, b) {
 // selon le vecteur de direction de chacune
 function bougerBalles() {
 	var vecth, vectv, posh, posv, k;
-	for (k = 0 ; k < div_balle.length; k++) {
+	var vitesse  =document.getElementById("vitesse").value;
+	for (k = 0 ; k < div_balle.length; ++k) {
 		// pour chacune des balles actives
 		// récupère le vecteur actuel de la balle
 		vecth = div_balle[k].getAttribute("vecth");
 		vectv = div_balle[k].getAttribute("vectv");
 		// récupère la position actuelle de la balle
-		posh = parseInt(div_balle[k].style.left, 10);
-		posv = parseInt(div_balle[k].style.top, 10);
+		posh = parseFloat(div_balle[k].style.left);
+		posv = parseFloat(div_balle[k].style.top);
+		//console.log("posv =="+posv+" Vs "+div_balle[k].style.top);
+
 		// calcule le pas suivant
-		posh += document.getElementById("vitesse").value * vecth;
-		posv += document.getElementById("vitesse").value * vectv;
+		posh += vitesse * vecth;
+		posv += vitesse * vectv;
+
+        //console.log("vitesse =="+vitesse);
+
 		if (posh < 0 || posh > cadreWidth - largeurBalle) {
 			// rebond gauche / droite
 			div_balle[k].setAttribute("vecth", -vecth.toString());
@@ -61,6 +67,16 @@ function bougerBalles() {
 
 // crée et retourne un élément <img> initialisé
 function nouvelleBalle() {
+
+//temps = t
+//vitesse = v
+//origine = (x, y, z)
+//vecteur directeur = (a, b, c)
+
+//nouvelle position à l'instant t:
+//pos = (x + (t*v)*cos(a), y + (t*v)*cos(b), z + (t*v)*cos(c))
+//posx = x + t*
+
 	// numéro d'une image d'une certaine couleur
 	var num = div_balle.length % nbCouleurs;
 	var balle = document.createElement("img");
@@ -71,11 +87,16 @@ function nouvelleBalle() {
 	balle.style.top = nombreAuHasard(cadreHeight / 2 - largeurBalle, cadreHeight / 2 + largeurBalle) + "px";
 	/// vecteur de déplacement (vectv,vecth) au hasard
 	/// mémorisé dans les attributs de chaque balle
-	///balle.setAttribute("vectv", nombreAuHasardNonNul(-1, 1));
-	///balle.setAttribute("vecth", nombreAuHasardNonNul(-1, 1));
-	// Vitesse de depart egale sur toutes les balles 
-    balle.setAttribute("vectv", 1);
-	balle.setAttribute("vecth", 1); 
+	balle.setAttribute("vectv", nombreAuHasardNonNul(-4, 4));
+	balle.setAttribute("vecth", nombreAuHasardNonNul(-4, 4));
+	// Vitesse de départ egale sur toutes les balles 
+	var angle = Math.random() * (2*Math.PI - 0) + 0;
+
+	console.log("vAngle =="+angle+"  -- 2PI --"+2*Math.PI);
+    balle.setAttribute("vectv", 3*Math.sin(angle));
+	balle.setAttribute("vecth", 3*Math.cos(angle)); 
+	//console.log("vYY =="+Math.sin(angle));
+	//console.log("vXX =="+Math.cos(angle));
 	balle.setAttribute("number", num);
 	var myBall = num+1;
     balle.setAttribute("title", "balle numero : "+myBall);
